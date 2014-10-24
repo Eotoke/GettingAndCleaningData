@@ -32,7 +32,6 @@ Steps:
 > source("run_analysis.r")
 > run_analysis()
 ```
-
 5. Check your working directory for the output - **"tidy_data.txt"**
 
 ### Part 2: Project Background and Design Considerations
