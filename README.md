@@ -10,7 +10,7 @@ This document is divided into 3 parts:
 
 1. Steps to setup and run "run_analysis.R" program.
 2. Project Background and Design Considerations of the solution.
-3. Explanation of the solution in details.
+3. Detailed Explanation of the solution.
 
 ### Part 1: Setup and Running "run_analysis.R"
 
@@ -29,10 +29,10 @@ Steps:
 3. Place **"run_analysis.r"** inside the same working directory.
 4. Run the following R code:
 
-```
+	```
     > source("run_analysis.r")
 	> run_analysis()
-```
+	```
 5. Check your working directory for the output - **"tidy_data.txt"**
 
 ### Part 2: Project Background and Design Considerations
@@ -91,7 +91,7 @@ Step 1: Merge the training and the test sets to create one data set.
 Step 2: Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 1. As described in the assumptions, angle() and BodyBody measurements are assumed to be features we are not interested in.
-  + Remove them by finding and removing them from feature lookup table.
+  + Remove them by finding and removing them from **features** table.
   + At the same time, we look for the columns numbers with the "mean" and "std" and store these interested columns into **mean_std_columns**.
 2. Prepare **interested_columns** by also adding in Subject (col 1) and ActivityLabel (2)
 3. Extract out these columns into **mean_std_set**
@@ -149,7 +149,9 @@ Step 4: Appropriately labels the data set with descriptive variable names.
 
 Step 5: From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-1. Using library dplyr, group by "Subject" and "Activity" and average each measurement.
+1. Using library dplyr, group by "Subject" and "Activity" and average each measurement into **tidy_data**.
+2. Output **tidy_data** into "tidy_data.txt"
+3. Free up space by cleaning up all dataframes that had been used for processing.
 
 ```{r}
 	### Start of Step 5###
@@ -163,4 +165,7 @@ Step 5: From the data set in step 4, create a second, independent tidy data set 
 	#writing the final set of data to tidy_data.txt
 	write.table(tidy_data,"tidy_data.txt",row.names=F)
 	### End of Step 5###
+	
+	#clearing up
+	rm(list=ls())
 ```
